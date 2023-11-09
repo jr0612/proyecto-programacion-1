@@ -5,17 +5,23 @@ import lon_palabras
 import palabras_diferentes
 import detectar_idioma
 import stopwords
+from tkinter import filedialog , Tk
 
-from tkinter import filedialog
 opiton = None
 texto = None
 def abrir_archivo():
+     ventana = Tk()
+     ventana.withdraw()
+     ventana.attributes('-topmost', True)
      ruta_archivo = filedialog.askopenfile(initialdir='/', title='Selecciona el texto',
                                            filetypes=(("Archivos de texto", '*.txt') ,('Todos los archivos' , '*.*')))
      if ruta_archivo:
           with open(ruta_archivo.name ,'r', encoding='utf-8' ) as archivo:
                texto = archivo.read()
                return texto
+     ventana.destroy()
+
+     
   
 def mostrar_info_basica(texto):
     resultado = 'El texto tiene: ' +str(info_basica.contar_caracteres(texto)) +' caracteres\nEl texto tiene: '+ str(info_basica.contar_palabras(texto)) + ' palabras'
@@ -38,18 +44,25 @@ def menu_inicial():
 
      print("1.Abrir archivo")
      print("2.Salir")
-     option = int(input('Elije ulna opcion: '))
+     option = int(input('Elije una opción: '))
      while True:
           if option == 1:
                texto = abrir_archivo()
                if texto:
                     print('\nTexto cargado con exito.')
                     menu_herramientas(texto)
+               else:
+                    print('\nEl archivo no fue cargado con exito\n')
+                    menu_inicial()
+                    break
                break
           elif option == 2:
                print('Hasta pronto.')
                break
           else:
+               print()
+               print()
+               print('RESULTADO:')               
                print('opcion invalida, por elija una opcion valida.\n')
 def menu_herramientas(texto):
 
@@ -72,7 +85,7 @@ def menu_herramientas(texto):
           if option ==1:
                print()
                print()
-               print('RESULTADO:')               
+               print('RESULTADO:')
                print(mostrar_info_basica(texto))
                menu_herramientas(texto)
                break
@@ -88,6 +101,7 @@ def menu_herramientas(texto):
                print()
                print('RESULTADO:')
                lon_palabras.histograma_longitudes_palabras(texto)
+               menu_herramientas(texto)
                break
 
           if option == 4:
@@ -102,6 +116,7 @@ def menu_herramientas(texto):
                print()
                print('RESULTADO:')
                print('Cantidad de palabras distintas en el texto: ' + str(palabras_diferentes.contar_palabras_diferentes(texto)))
+               menu_herramientas(texto)
                break
           if option == 6:
                print()
