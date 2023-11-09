@@ -5,6 +5,7 @@ import lon_palabras
 import palabras_diferentes
 import detectar_idioma
 import stopwords
+import epoca_del_texto
 from tkinter import filedialog , Tk
 
 opiton = None
@@ -130,6 +131,13 @@ def menu_herramientas(texto):
                print()
                print('RESULTADO:')
                mostrar_no_stop_words(texto)
+               menu_herramientas(texto)
+               break
+          if option == 11:
+               print()
+               print()
+               print('RESULTADO:')
+               print(epoca_del_texto.determinar_periodo_tiempo(texto))
                menu_herramientas(texto)
                break
           elif option ==12:
