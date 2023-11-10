@@ -6,9 +6,13 @@ import palabras_diferentes
 import detectar_idioma
 import stopwords
 import epoca_del_texto
+import lugares_y_personajes_2
+import lugares_y_nombres
+import personajes_principales
 from tkinter import filedialog , Tk
 
 opiton = None
+opiton2 = None
 texto = None
 def abrir_archivo():
      ventana = Tk()
@@ -133,6 +137,36 @@ def menu_herramientas(texto):
                mostrar_no_stop_words(texto)
                menu_herramientas(texto)
                break
+          if option == 8:
+               print()
+               print()
+               print('RESULTADO:')
+               print(lugares_y_nombres.frec_personajes(lugares_y_personajes_2.lugares_libreria(texto,'personajes'),texto))
+               menu_herramientas(texto)
+               break
+          if option == 9:
+               print()
+               print()
+               print('RESULTADO:')
+               print(personajes_principales.personajes_principales(lugares_y_nombres.frec_personajes(lugares_y_personajes_2.lugares_libreria(texto,'personajes'),texto)))
+               menu_herramientas(texto)
+               break
+          if option == 10:
+               print()
+               print()
+               print('1.Sin libreria')
+               print('2.Con libreria')          
+               option2 = int(input('Elije una opción: '))
+               if option2 == 1:
+                    print(lugares_y_nombres.lugares(lugares_y_nombres.nom_prop(texto),texto))
+               elif option2 ==2:
+                    print(lugares_y_personajes_2.lugares_libreria(texto, 'lugares'))
+               else:
+                    print('Opcion invalida')
+
+               menu_herramientas(texto)
+               break
+          
           if option == 11:
                print()
                print()
@@ -146,14 +180,5 @@ def menu_herramientas(texto):
           else:
                print('opcion invalida, por elija una opcion valida.\n')
                menu_herramientas(texto)
-               break
-               
-menu_inicial()
-
-
-
-    
-
-
-
-         
+               break            
+menu_inicial()   

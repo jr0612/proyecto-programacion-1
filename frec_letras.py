@@ -1,7 +1,6 @@
 import matplotlib.pyplot as plt
 import unidecode 
-with open("texto.txt", "r", encoding="utf-8") as archivo:
-    texto = archivo.read()
+
 def frec_letras(texto):
     
     texto = texto.lower()
