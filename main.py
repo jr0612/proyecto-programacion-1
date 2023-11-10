@@ -11,6 +11,7 @@ import lugares_y_nombres
 import personajes_principales
 from tkinter import filedialog , Tk
 
+
 opiton = None
 opiton2 = None
 texto = None
@@ -44,8 +45,16 @@ def mostrar_no_stop_words(texto):
           print(f"{palabra}: {frecuencia}")
 
 def menu_inicial():
+     print('Recuerde tener instaladas las siguientes librerias para un completo funcionamiento:')
+     print('unidecode')
+     print('matplotlib')
+     print('spacy\n')
+     print('Tambien ejecutar el siguiente comando en el terminal:')
+     print('python -m spacy download es_core_news_md\n')
      print("PROCESADOR DE INFORMACION TEXTUAL")
      print()
+
+     
 
      print("1.Abrir archivo")
      print("2.Salir")
@@ -180,5 +189,9 @@ def menu_herramientas(texto):
           else:
                print('opcion invalida, por elija una opcion valida.\n')
                menu_herramientas(texto)
-               break            
+               break 
+
+
+
+
 menu_inicial()   
